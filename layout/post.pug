@@ -23,8 +23,7 @@ block main
         .container.post-meta
           if (page.tags && page.tags.length)
             .post-tags
-              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
-          .post-time= page.date.format(config.date_format)
+              != list_tags(page.tags, {show_count: false, class: 'post-tag-link', style:'none', separator:''})
 
       .container.post-header
         h1: = page.title
@@ -34,10 +33,15 @@ block main
           details.toc
             summary.toc-accordion
               = theme.toc_words
-            != toc(page.content)
+            != toc(page.content, { list_number: false })
 
-      .container.post-content
+      .container.post-content#write
         != page.content
+
+      .container.post-footer
+        .post-time
+          .post-time-created= "创建于 " + page.date.format(config.date_format) + " " + page.date.format(config.time_format)
+          .post-time-updated= "更新于 " + page.updated.format(config.date_format) + " " + page.updated.format(config.time_format)
 
     include _partial/mathjax.pug
 

@@ -27,13 +27,13 @@ block main
                 if post.link
                     a(href=url_for(post.link),target="_blank", itemprop="url")= post.title
                 else
-                    a(href=url_for(post.path))= post.title
+                    a(href=url_for(post.path))= post.title || page.data
 
               .post-content
                 if post.description
-                  != post.description
+                  p= post.description
                 else if post.excerpt
-                  != post.excerpt
+                  p= post.excerpt
                 else if post.content
                   - var br = post.content.indexOf('</p>')
                   if br < 0
@@ -44,7 +44,7 @@ block main
               .post-meta
                 if (post.tags && post.tags.length)
                   .post-tags
-                    != list_tags(post.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+                    != list_tags(post.tags, {show_count: false, class: 'post-tag-link', style:'none', separator:' '})
                 .post-time= post.date.format(config.date_format)
 
     if !theme.infinite_scroll
@@ -53,9 +53,9 @@ block main
     footer.footer.wrapper
       .social
         +social_icon('email', "mailto:", "fa-envelope-o")
+        +social_icon('github', 'https://github.com/', 'fa-github')
         +social_icon('twitter', 'https://twitter.com/', 'fa-twitter')
         +social_icon('weibo', 'https://weibo.com/', 'fa-weibo')
-        +social_icon('github', 'https://github.com/', 'fa-github')
         +social_icon('googleplus', 'https://plus.google.com/', 'fa-google-plus')
         +social_icon('rss', "", "fa-rss")
 

@@ -176,7 +176,7 @@ h4 .header-anchor::after {
         .post-time {
             flex-shrink: 0;
         }
-        .post-tag-link {
+        .post-tag-link, .post-tag-link-none-link, .post-tag-link-list-link {
             display: inline-block;
             color: @color-ignore;
             color: var(--color-ignore);
@@ -206,11 +206,10 @@ h4 .header-anchor::after {
     }
 
     .post-meta {
-        color: @color-ignore;
-        color: var(--color-ignore);
+        
     }
 
-    .post-tag-link {
+    .post-tag-link, .post-tag-link-none-link, .post-tag-link-list-link {
         color: @color-ignore;
         color: var(--color-ignore);
         margin: 0 4px;
@@ -229,10 +228,21 @@ h4 .header-anchor::after {
         display: inline-block;
     }
 
+    
+}
+
+.post-footer {
     .post-time {
-        display: inline-block;
-        font-size: 0.8em;
-        padding-left: 4px;
+        display: flex;
+        justify-content: flex-end;
+        font-size: 0.9em;
+
+        color: @color-ignore;
+        color: var(--color-ignore);
+
+        .post-time-created {
+            margin-right: 1rem;
+        }
     }
 }
 
@@ -577,6 +587,8 @@ details[open] > figure:last-child {
 // header
 .header {
     margin-top: 2em;
+    margin-bottom: 1.5em;
+
     display: flex;
     @media only screen and (max-width: @break-level-2) {
         margin-top: 0;
